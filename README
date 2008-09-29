@@ -1,0 +1,80 @@
+=============================================================
+*     Helper scripts to handle Mozilla localizations        *
+*                                                           *
+*  Version: 0.1 alpha                                       *
+*  Author: Julen Ruiz Aizpuru <julenx@gmail.com>            *
+*          Based on previous shell scripts by Ibon Igartua. *
+=============================================================
+ 
+This set of scripts aims to ease the management of the Mozilla l10n environment
+and focuses specially on those who use Translate Toolkit.
+
+Package contents
+================
+
+This package includes:
+ - README : this file you are reading.
+ - config.py : main configuration file.
+ - update.py : script to update repositories.
+ - moz2po.py : creates PO files from the repositories.
+ - po2moz.py : converts back PO files to Mozilla l10n formats.
+ - bug_diff.py : creates diff based on our changes.
+ - compare.py : runs compare-locales for selected products.
+
+
+Installation
+============
+
+Just place all the .py files in your base directory. If you don't have a
+repository yet, creating a new directory would make sense.
+If you have a working comm-central, mozilla-central, or l10n-central
+repository, please make sure your directory layout follows this pattern:
+
+  + basedir/
+    - comm-central
+    + l10n
+      - ab-CD
+
+or in case you have mozilla-central,
+
+  + basedir
+    - mozilla-central
+    + l10n
+      - ab-CD
+
+where comm-central, mozilla-central, and ab-CD are Mercurial repositories.
+
+
+Configuration
+=============
+
+You will need to configure several things before running the scripts.
+
+* Main configuration.
+  config.py :
+
+    You will need to set your locale code, the product(s) you are localizing,
+    and specify whether you are using comm-central or not.
+    You can also customize the parameters passed to moz2po and po2moz commands.
+
+* Global Mercurial configuration.
+  $HOME/.hgrc :
+    [ui]
+    username = Your Real Name <user@example.com>
+    merge = your-merge-program
+
+    [diff]
+    git = 1
+
+    [defaults]
+    diff=-p -U 8
+
+* Before pushing to l10n-central, configure your repository and ssh as well.
+  l10n-central/MOZLANG/.hg/hgrc :
+    [paths]
+    default = http://hg.mozilla.org/l10n-central/MOZLANG
+    default-push = ssh://hg.mozilla.org/l10n-central/MOZLANG
+
+  $HOME/.ssh/config :
+    Host hg.mozilla.org
+    User user@host.domain
