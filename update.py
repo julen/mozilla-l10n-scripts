@@ -26,23 +26,6 @@ parser.add_option("--l10n", dest="l10n", action="store_true", default=False, \
 # Base directory for operations
 basedir = os.getcwd()
 
-# Check if we have the repositories and if not, pull them
-if COMM_CENTRAL:
-    if not os.path.exists("comm-central"):
-        cmd = ["hg", "clone", "http://hg.mozilla.org/comm-central"]
-        subprocess.call(cmd)
-        os.chdir("comm-central")
-        cmd = ["python", "client.py", "checkout", "--skip-inspector",
-               "--skip-ldap", "--skip-chatzilla", "--skip-venkman"]
-        subprocess.call(cmd)
-        os.chdir(basedir)
-else:
-    if not os.path.exists("mozilla-central"):
-        cmd = ["hg", "clone", "http://hg.mozilla.org/mozilla-central/"]
-        subprocess.call(cmd)
-if not os.path.exists(os.path.join("l10n", MOZLANG)):
-    cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/" % (MOZLANG)]
-
 # Update requested repositories -- hg doesn't have partial clone/checkouts :(
 if not options.l10n:
     print
@@ -78,6 +61,9 @@ if not options.en:
     print "Checking out l10n repository changes for '%s'..." % (MOZLANG)
     print
     if not os.path.exists(os.path.join("l10n", MOZLANG)):
+        if not os.path.exists("l10n"):
+            os.mkdir("l10n")
+        os.chdir("l10n")
         print
         print "Repository not found -- checking for the first time"
         print
@@ -87,5 +73,5 @@ if not options.en:
         os.chdir(os.path.join("l10n", MOZLANG))
         cmd = ["hg", "pull", "-u"]
         subprocess.call(cmd)
-        os.chdir(basedir)
+    os.chdir(basedir)
 
