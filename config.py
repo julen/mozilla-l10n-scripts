@@ -55,6 +55,6 @@ else:
     FX_L10N_INI = "mozilla-central/browser/locales/l10n.ini"
 # Thunderbird
 TB_L10N_INI = "comm-central/mail/locales/l10n.ini"
-# No l10n.ini for Calendar yet
-CA_L10N_INI = ""
+# Calendar
+CA_L10N_INI = "comm-central/calendar/locales/l10n.ini"
 

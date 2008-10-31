@@ -25,7 +25,8 @@ if "TB" in PRODUCTS:
     raw_input("Press ENTER to continue.")
 if "CA" in PRODUCTS:
     print
-    print "* Calendar doesn't have l10n.ini yet!"
+    print "* Calendar"
+    call(["compare-locales", CA_L10N_INI, "l10n", MOZLANG])
     print
     raw_input("Press ENTER to continue.")
 
