@@ -45,17 +45,7 @@ for dir in DIRS:
     if not os.path.exists(current_dir):
         os.mkdir(current_dir)
     current_podir = os.path.join(po_basedir, dir)
-    # Templates directory changes according to COMM_CENTRAL
-    if dir in DIRS_FX or dir in DIRS_CM:
-        if COMM_CENTRAL:
-            current_templatedir= os.path.join("comm-central", "mozilla", dir,
-                "locales", "en-US")
-        else:
-            current_templatedir = os.path.join("mozilla-central", dir,
-                "locales", "en-US")
-    else:
-        current_templatedir = os.path.join("comm-central", dir, "locales",
-            "en-US")
+    current_templatedir = os.path.join("mozilla", REPO, dir, "locales", "en-US")
     PO2MOZ_PARAMS += ["-i", current_podir]
     PO2MOZ_PARAMS += ["-t", current_templatedir]
     PO2MOZ_PARAMS += ["-o", current_dir]

@@ -14,19 +14,19 @@ print
 if "FX" in PRODUCTS:
     print
     print "* Firefox"
-    call(["compare-locales", FX_L10N_INI, "l10n", MOZLANG])
+    call(["compare-locales", FX_L10N_INI, "l10n/%s" % REPO, MOZLANG])
     print
     raw_input("Press ENTER to continue.")
 if "TB" in PRODUCTS:
     print
     print "* Thunderbird"
-    call(["compare-locales", TB_L10N_INI, "l10n", MOZLANG])
+    call(["compare-locales", TB_L10N_INI, "l10n/%s" % REPO, MOZLANG])
     print
     raw_input("Press ENTER to continue.")
 if "CA" in PRODUCTS:
     print
     print "* Calendar"
-    call(["compare-locales", CA_L10N_INI, "l10n", MOZLANG])
+    call(["compare-locales", CA_L10N_INI, "l10n/%s" % REPO, MOZLANG])
     print
     raw_input("Press ENTER to continue.")
 

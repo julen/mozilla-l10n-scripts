@@ -12,9 +12,9 @@ MOZLANG = "eu"
 # Example: PRODUCTS = ["FX", "TB"]
 PRODUCTS = ["TB"]
 
-# Set this to True if using comm-central repository (Fx, Tb, Sb, ...)
-# If set to False, it'll think we're using mozilla-central repository (Fx only)
-COMM_CENTRAL = True
+# Set this to the repository you are working on.
+# Available options: 1.9.1
+REPO = "1.9.1"
 
 # Parameters passed to moz2po/po2moz scripts
 COMMON_PARAMS = ["--errorlevel=traceback", "--progress=verbose", "-x *.xhtml", "-x *.inc", "-x *.xml", "-x *.rdf", "-x bookmarks.html", "-x welcome.xhtml", "-x platformKeys.properties", "-x pref-publish.dtd", "-x *.txt", "-x *.css", "-x charset.mk"]
@@ -48,11 +48,9 @@ if "CA" in PRODUCTS:
     DIRS.extend(DIRS_CA)
 
 # l10n.ini location for compare-locales
+# TODO: adapt l10n.ini files for hg.frenchmozilla.fr
 # Firefox
-if COMM_CENTRAL:
-    FX_L10N_INI = "comm-central/mozilla/browser/locales/l10n.ini"
-else:
-    FX_L10N_INI = "mozilla-central/browser/locales/l10n.ini"
+FX_L10N_INI = "comm-central/mozilla/browser/locales/l10n.ini"
 # Thunderbird
 TB_L10N_INI = "comm-central/mail/locales/l10n.ini"
 # Calendar

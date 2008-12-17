@@ -33,21 +33,11 @@ for dir in DIRS:
     print
     print "Running moz2po %s" % (dir)
     print "--------------------------------------------------------"
-    current_inputdir = os.path.join("l10n", MOZLANG, dir)
+    current_inputdir = os.path.join("l10n", REPO, MOZLANG, dir)
     current_podir = os.path.join(po_basedir, dir)
     if not os.path.exists(current_podir):
         os.mkdir(current_podir)
-    # Templates directory changes according to COMM_CENTRAL
-    if dir in DIRS_FX or dir in DIRS_CM:
-        if COMM_CENTRAL:
-            current_templatedir= os.path.join("comm-central", "mozilla", dir,
-                "locales", "en-US")
-        else:
-            current_templatedir = os.path.join("mozilla-central", dir,
-                "locales", "en-US")
-    else:
-        current_templatedir = os.path.join("comm-central", dir, "locales",
-            "en-US")
+    current_templatedir = os.path.join("mozilla", REPO, dir, "locales", "en-US")
     print current_inputdir
     print current_templatedir
     print current_podir

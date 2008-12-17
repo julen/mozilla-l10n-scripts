@@ -9,6 +9,7 @@ from datetime import datetime
 from optparse import OptionParser
 import os
 import subprocess
+import sys
 
 # TODO: well, it's not TODO but just an easily feasible idea: run
 #       compare-locales after updating repositories to log the status
@@ -31,47 +32,57 @@ if not options.l10n:
     print
     print "Checking out en-US repository changes..."
     print
-    if COMM_CENTRAL:
-        if not os.path.exists("comm-central"):
-            print
-            print "Repository not found -- checking for the first time"
-            print
-            cmd = ["hg", "clone", "http://hg.mozilla.org/comm-central"]
-            subprocess.call(cmd)
-        os.chdir("comm-central")
-        cmd = ["python", "client.py", "checkout", "--skip-inspector",
-               "--skip-ldap", "--skip-chatzilla", "--skip-venkman"]
-        subprocess.call(cmd)
-        os.chdir(basedir)
+
+    repodir = os.path.join("mozilla", REPO)
+
+    if not os.path.exists("mozilla"):
+        try:
+            os.mkdir("mozilla")
+        except OSError:
+            print "Error: couldn't create 'mozilla' directory"
+            sys.exit(0)
+        os.chdir("mozilla")
+        print
+        print "Repository not found -- checking for the first time"
+        print
+        #TODO: use a different repository for 1.9.2 when it becomes available
+        cmd = ["hg", "clone", "http://hg.frenchmozilla.fr/", REPO]
     else:
-        if not os.path.exists("mozilla-central"):
-            print
-            print "Repository not found -- checking for the first time"
-            print
-            cmd = ["hg", "clone", "http://hg.mozilla.org/mozilla-central/"]
-            subprocess.call(cmd)
-        else:
-            os.chdir("mozilla-central")
-            cmd = ["hg", "pull", "-u"]
-            subprocess.call(cmd)
-            os.chdir(basedir)
+        os.chdir(repodir)
+        cmd = ["hg", "pull", "-u"]
+
+    print cmd
+    subprocess.call(cmd)
+    os.chdir(basedir)
 
 if not options.en:
     print
     print "Checking out l10n repository changes for '%s'..." % (MOZLANG)
     print
-    if not os.path.exists(os.path.join("l10n", MOZLANG)):
-        if not os.path.exists("l10n"):
-            os.mkdir("l10n")
-        os.chdir("l10n")
+
+    l10nbasedir = os.path.join("l10n", REPO)
+    l10ndir = os.path.join(l10nbasedir, MOZLANG)
+
+    if not os.path.exists(l10ndir):
+        try:
+            os.makedirs(l10nbasedir)
+        except OSError:
+            print "Error: couldn't create %s directory" % (l10nbasedir)
+            sys.exit(0)
+        os.chdir(l10nbasedir)
         print
         print "Repository not found -- checking for the first time"
         print
-        cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/" % (MOZLANG)]
-        subprocess.call(cmd)
+        if REPO == "1.9.1":
+            cmd = ["hg", "clone", "http://hg.mozilla.org/releases/\
+l10n-mozilla-1.9.1/%s/" % (MOZLANG)]
+        else:
+            cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/" % (MOZLANG)]
     else:
-        os.chdir(os.path.join("l10n", MOZLANG))
+        os.chdir(l10ndir)
         cmd = ["hg", "pull", "-u"]
-        subprocess.call(cmd)
+
+    print cmd
+    subprocess.call(cmd)
     os.chdir(basedir)
 
