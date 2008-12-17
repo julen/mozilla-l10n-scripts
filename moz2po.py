@@ -33,7 +33,7 @@ for dir in DIRS:
     print
     print "Running moz2po %s" % (dir)
     print "--------------------------------------------------------"
-    current_inputdir = os.path.join("l10n", REPO, MOZLANG, dir)
+    current_inputdir = os.path.join("l10n", MOZLANG, dir)
     current_podir = os.path.join(po_basedir, dir)
     if not os.path.exists(current_podir):
         os.mkdir(current_podir)
