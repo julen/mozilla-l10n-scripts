@@ -25,25 +25,7 @@ This package includes:
 Installation
 ============
 
-Just place all the .py files in your base directory. If you don't have a
-repository yet, creating a new directory would make sense.
-If you have a working comm-central, mozilla-central, or l10n-central
-repository, please make sure your directory layout follows this pattern:
-
-  + basedir/
-    - comm-central
-    + l10n
-      - ab-CD
-
-or in case you have mozilla-central,
-
-  + basedir
-    - mozilla-central
-    + l10n
-      - ab-CD
-
-where comm-central, mozilla-central, and ab-CD are Mercurial repositories.
-
+Just place all the .py files in the directory you want to have all the l10n stuff.
 
 Configuration
 =============
@@ -54,7 +36,7 @@ You will need to configure several things before running the scripts.
   config.py :
 
     You will need to set your locale code, the product(s) you are localizing,
-    and specify whether you are using comm-central or not.
+    and specify the repository you are working with.
     You can also customize the parameters passed to moz2po and po2moz commands.
 
 * Global Mercurial configuration.
@@ -69,12 +51,14 @@ You will need to configure several things before running the scripts.
     [defaults]
     diff=-p -U 8
 
-* Before pushing to l10n-central, configure your repository and ssh as well.
-  l10n-central/MOZLANG/.hg/hgrc :
+* Before pushing, configure your repository and ssh as well.
+  l10n/MOZLANG/.hg/hgrc :
     [paths]
-    default = http://hg.mozilla.org/l10n-central/MOZLANG
-    default-push = ssh://hg.mozilla.org/l10n-central/MOZLANG
+    default = http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/MOZLANG/
+    default-push = ssh://hg.mozilla.org/releases/l10n-mozilla-1.9.1/MOZLANG/
+    central = ssh://hg.mozilla.org/l10n-central/MOZLANG/
 
   $HOME/.ssh/config :
     Host hg.mozilla.org
     User user@host.domain
+
