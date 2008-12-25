@@ -23,24 +23,19 @@ if options.directory:
 
 # Create base dirs if necessary
 po_basedir = os.path.join("po", MOZLANG)
-if not os.path.exists("po"):
-    os.mkdir("po")
 if not os.path.exists(po_basedir):
-    os.mkdir(po_basedir)
+    os.makedirs(po_basedir)
 
 # Run moz2po for each directory in DIRS
 for dir in DIRS:
     print
     print "Running moz2po %s" % (dir)
     print "--------------------------------------------------------"
-    current_inputdir = os.path.join("l10n", MOZLANG, dir)
+    current_inputdir = os.path.join("l10n", REPO, MOZLANG, dir)
     current_podir = os.path.join(po_basedir, dir)
     if not os.path.exists(current_podir):
-        os.mkdir(current_podir)
+        os.makedirs(current_podir)
     current_templatedir = os.path.join(REPODIR, dir, "locales", "en-US")
-    print current_inputdir
-    print current_templatedir
-    print current_podir
     MOZ2PO_PARAMS += ["-i", current_inputdir]
     MOZ2PO_PARAMS += ["-t", current_templatedir]
     MOZ2PO_PARAMS += ["-o", current_podir]

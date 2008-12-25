@@ -27,7 +27,7 @@ now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 if not os.path.exists("backup"):
     os.mkdir("backup")
 backup_filename = os.path.join("backup", "%s_%s.tar.bz2" % (MOZLANG, now))
-repo = os.path.join("l10n", MOZLANG)
+repo = os.path.join("l10n", REPO, MOZLANG)
 cmd = ["tar", "--bzip2", "-cf", backup_filename, repo]
 print "Making a copy of %s repository..." % (repo)
 subprocess.Popen(cmd)
@@ -43,7 +43,7 @@ for dir in DIRS:
     print "--------------------------------------------------------"
     current_dir = os.path.join(repo, dir)
     if not os.path.exists(current_dir):
-        os.mkdir(current_dir)
+        os.makedirs(current_dir)
     current_podir = os.path.join(po_basedir, dir)
     current_templatedir = os.path.join(REPODIR, dir, "locales", "en-US")
     PO2MOZ_PARAMS += ["-i", current_podir]
