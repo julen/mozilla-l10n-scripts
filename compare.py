@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
-Script that runs compare-locales.
+Script that runs compare-locales for selected PRODUCTS.
 """
 
 from config import *
