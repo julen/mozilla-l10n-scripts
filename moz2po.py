@@ -37,7 +37,7 @@ for dir in DIRS:
     current_podir = os.path.join(po_basedir, dir)
     if not os.path.exists(current_podir):
         os.mkdir(current_podir)
-    current_templatedir = os.path.join("mozilla", REPO, dir, "locales", "en-US")
+    current_templatedir = os.path.join(REPODIR, dir, "locales", "en-US")
     print current_inputdir
     print current_templatedir
     print current_podir

@@ -33,22 +33,14 @@ if not options.l10n:
     print "Checking out en-US repository changes..."
     print
 
-    repodir = os.path.join("mozilla", REPO)
-
-    if not os.path.exists("mozilla"):
-        try:
-            os.mkdir("mozilla")
-        except OSError:
-            print "Error: couldn't create 'mozilla' directory"
-            sys.exit(0)
-        os.chdir("mozilla")
+    if not os.path.exists(REPODIR):
         print
         print "Repository not found -- checking for the first time"
         print
         #TODO: use a different repository for 1.9.2 when it becomes available
-        cmd = ["hg", "clone", "http://hg.frenchmozilla.fr/", REPO]
+        cmd = ["hg", "clone", "http://hg.frenchmozilla.fr/", REPODIR]
     else:
-        os.chdir(repodir)
+        os.chdir(REPODIR)
         cmd = ["hg", "pull", "-u"]
 
     print cmd
@@ -61,7 +53,7 @@ if not options.en:
     print
 
     l10nbasedir = "l10n"
-    l10ndir = os.path.join(l10nbasedir, MOZLANG)
+    l10ndir = os.path.join(l10nbasedir, REPO, MOZLANG)
 
     if not os.path.exists(l10ndir):
         try:
@@ -77,7 +69,8 @@ if not options.en:
             cmd = ["hg", "clone", "http://hg.mozilla.org/releases/\
 l10n-mozilla-1.9.1/%s/" % (MOZLANG)]
         else:
-            cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/" % (MOZLANG)]
+            cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/"\
+                  % (MOZLANG)]
     else:
         os.chdir(l10ndir)
         cmd = ["hg", "pull", "-u"]

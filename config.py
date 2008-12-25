@@ -55,3 +55,7 @@ TB_L10N_INI = "ini/mail.ini"
 # Calendar
 CA_L10N_INI = "ini/calendar.ini"
 
+# en-US base repository dirname
+# WARNING: if you change this, you'll have to edit ini files accordingly
+REPODIR = "mozilla"
+
