@@ -48,11 +48,10 @@ if "CA" in PRODUCTS:
     DIRS.extend(DIRS_CA)
 
 # l10n.ini location for compare-locales
-# TODO: adapt l10n.ini files for hg.frenchmozilla.fr
 # Firefox
-FX_L10N_INI = "comm-central/mozilla/browser/locales/l10n.ini"
+FX_L10N_INI = "ini/browser.ini"
 # Thunderbird
-TB_L10N_INI = "comm-central/mail/locales/l10n.ini"
+TB_L10N_INI = "ini/mail.ini"
 # Calendar
-CA_L10N_INI = "comm-central/calendar/locales/l10n.ini"
+CA_L10N_INI = "ini/calendar.ini"
 
