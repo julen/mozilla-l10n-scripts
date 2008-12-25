@@ -7,6 +7,7 @@ Script to update localizations from the repositories
 from config import *
 from datetime import datetime
 from optparse import OptionParser
+import errno
 import os
 import subprocess
 import sys
@@ -58,9 +59,10 @@ if not options.en:
     if not os.path.exists(l10ndir):
         try:
             os.makedirs(l10nbasedir)
-        except OSError:
-            print "Error: couldn't create %s directory" % (l10nbasedir)
-            sys.exit(0)
+        except OSError, e:
+            if e.errno != errno.EEXIST:
+                print "Error: couldn't create %s directory" % (l10nbasedir)
+                sys.exit(0)
         os.chdir(l10nbasedir)
         print
         print "Repository not found -- checking for the first time"
