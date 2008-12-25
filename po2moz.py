@@ -23,7 +23,7 @@ if options.directory:
     DIRS = options.directory
 
 # Backup the current repository, just in case
-now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+now = datetime.now().strftime("%Y%m%d_%H:%M:%S")
 if not os.path.exists("backup"):
     os.mkdir("backup")
 backup_filename = os.path.join("backup", "%s_%s.tar.bz2" % (MOZLANG, now))
