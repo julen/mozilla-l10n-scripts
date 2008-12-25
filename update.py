@@ -52,8 +52,8 @@ if not options.en:
     print "Checking out l10n repository changes for '%s'..." % (MOZLANG)
     print
 
-    l10nbasedir = "l10n"
-    l10ndir = os.path.join(l10nbasedir, REPO, MOZLANG)
+    l10nbasedir = os.path.join("l10n", REPO)
+    l10ndir = os.path.join(l10nbasedir, MOZLANG)
 
     if not os.path.exists(l10ndir):
         try:
