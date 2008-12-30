@@ -23,6 +23,12 @@ if "TB" in PRODUCTS:
     call(["compare-locales", TB_L10N_INI, "l10n/%s" % REPO, MOZLANG])
     print
     raw_input("Press ENTER to continue.")
+if "TK" in PRODUCTS and len(PRODUCTS) == 1:
+    print
+    print "* Toolkit"
+    call(["compare-locales", TK_L10N_INI, "l10n/%s" % REPO, MOZLANG])
+    print
+    raw_input("Press ENTER to continue.")
 if "CA" in PRODUCTS:
     print
     print "* Calendar"

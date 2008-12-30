@@ -8,7 +8,7 @@ Global configuration file for Mozilla l10n scripts
 MOZLANG = "eu"
 
 # Set this to the product(s) you are localizing. Available options are:
-# FX (Firefox), TB (Thunderbird), CA (Calendar)
+# FX (Firefox), TB (Thunderbird), CA (Calendar), TK (Toolkit)
 # Example: PRODUCTS = ["FX", "TB"]
 PRODUCTS = ["TB"]
 
@@ -39,11 +39,10 @@ DIRS_CM = ("dom", "netwerk", "security/manager", "toolkit")
 DIRS = []
 if "FX" in PRODUCTS:
     DIRS.extend(DIRS_FX)
-    DIRS.extend(DIRS_CM)
 if "TB" in PRODUCTS:
     DIRS.extend(DIRS_TB)
-    if "dom" not in DIRS:
-        DIRS.extend(DIRS_CM)
+if "TK" in PRODUCTS:
+    DIRS.extend(DIRS_CM)
 if "CA" in PRODUCTS:
     DIRS.extend(DIRS_CA)
 
@@ -52,6 +51,8 @@ if "CA" in PRODUCTS:
 FX_L10N_INI = "ini/browser.ini"
 # Thunderbird
 TB_L10N_INI = "ini/mail.ini"
+# Toolkit
+TK_L10N_INI = "ini/toolkit.ini"
 # Calendar
 CA_L10N_INI = "ini/calendar.ini"
 
