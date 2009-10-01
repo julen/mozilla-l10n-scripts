@@ -4,6 +4,8 @@
 Global configuration file for Mozilla l10n scripts
 """
 
+import os
+
 # Our language's ISO 639-2 code at Mozilla localizations
 MOZLANG = "eu"
 
@@ -13,8 +15,8 @@ MOZLANG = "eu"
 PRODUCTS = ["TB"]
 
 # Set this to the repository you are working on.
-# Available options: 1.9.1
-REPO = "1.9.1"
+# Available options: 1.9.1, 1.9.2, mozilla-central
+REPO = "1.9.2"
 
 # Parameters passed to moz2po/po2moz scripts
 COMMON_PARAMS = ["--errorlevel=traceback", "--progress=verbose", "--exclude=*.xhtml", "--exclude=*.inc", "--exclude=*.xml" "--exclude=*.rdf", "--exclude=*.js", "--exclude=*.html", "--exclude=*.txt", "--exclude=*.css", "--exclude=*.mk"]
@@ -48,15 +50,20 @@ if "CA" in PRODUCTS:
 
 # l10n.ini location for compare-locales
 # Firefox
-FX_L10N_INI = "ini/browser.ini"
+FX_L10N_INI = "ini/%s/browser.ini" % (REPO)
 # Thunderbird
-TB_L10N_INI = "ini/mail.ini"
+TB_L10N_INI = "ini/%s/mail.ini" % (REPO)
 # Toolkit
-TK_L10N_INI = "ini/toolkit.ini"
+TK_L10N_INI = "ini/%s/toolkit.ini" % (REPO)
 # Calendar
-CA_L10N_INI = "ini/calendar.ini"
+CA_L10N_INI = "ini/%s/calendar.ini" % (REPO)
+
+# Repository base location and repository URL
+REPO_BASEURL = "http://hg.mozilla.org.tr/"
+REPO_URL = REPO_BASEURL + "%s/mozilla-l10n/" % (REPO)
 
 # en-US base repository dirname
 # WARNING: if you change this, you'll have to edit ini files accordingly
-REPODIR = "mozilla"
+REPO_BASEDIR = "mozilla"
+REPODIR = os.path.join(REPO_BASEDIR, REPO)
 

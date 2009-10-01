@@ -38,8 +38,9 @@ if not options.l10n:
         print
         print "Repository not found -- checking for the first time"
         print
-        #TODO: use a different repository for 1.9.2 when it becomes available
-        cmd = ["hg", "clone", "http://hg.frenchmozilla.fr/", REPODIR]
+        if not os.path.exists(REPO_BASEDIR):
+            os.mkdir(REPO_BASEDIR)
+        cmd = ["hg", "clone", REPO_URL, REPODIR]
     else:
         os.chdir(REPODIR)
         cmd = ["hg", "pull", "-u"]
@@ -67,9 +68,9 @@ if not options.en:
         print
         print "Repository not found -- checking for the first time"
         print
-        if REPO == "1.9.1":
+        if REPO != "mozilla-central":
             cmd = ["hg", "clone", "http://hg.mozilla.org/releases/\
-l10n-mozilla-1.9.1/%s/" % (MOZLANG)]
+l10n-mozilla-%s/%s/" % (REPO, MOZLANG)]
         else:
             cmd = ["hg", "clone", "http://hg.mozilla.org/l10n-central/%s/"\
                   % (MOZLANG)]
