@@ -45,7 +45,7 @@ for dir in DIRS:
     if not os.path.exists(current_dir):
         os.makedirs(current_dir)
     current_podir = os.path.join(po_basedir, dir)
-    current_templatedir = os.path.join(REPODIR, dir, "locales", "en-US")
+    current_templatedir = os.path.join(ENUSDIR, dir)
     PO2MOZ_PARAMS += ["-i", current_podir]
     PO2MOZ_PARAMS += ["-t", current_templatedir]
     PO2MOZ_PARAMS += ["-o", current_dir]
