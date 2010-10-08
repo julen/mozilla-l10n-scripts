@@ -34,6 +34,8 @@ DIRS_FX = ("browser", "extensions/reporter", "other-licenses/branding/firefox")
 DIRS_TB = ("mail", "other-licenses/branding/thunderbird", "editor/ui")
 # Calendar directories
 DIRS_CA = ("calendar", "other-licenses/branding/sunbird")
+# Mobile directories
+DIRS_MB = ("mobile", )
 # Common directories (Toolkit)
 DIRS_CM = ("dom", "netwerk", "security/manager", "toolkit")
 
@@ -47,16 +49,8 @@ if "TK" in PRODUCTS:
     DIRS.extend(DIRS_CM)
 if "CA" in PRODUCTS:
     DIRS.extend(DIRS_CA)
-
-# l10n.ini location for compare-locales
-# Firefox
-FX_L10N_INI = "ini/%s/browser.ini" % (REPO)
-# Thunderbird
-TB_L10N_INI = "ini/%s/mail.ini" % (REPO)
-# Toolkit
-TK_L10N_INI = "ini/%s/toolkit.ini" % (REPO)
-# Calendar
-CA_L10N_INI = "ini/%s/calendar.ini" % (REPO)
+if "MB" in PRODUCTS:
+    DIRS.extend(DIRS_MB)
 
 # Repository base location and repository URL
 REPO_BASEURL = "http://hg.mozilla.org.tr/"
@@ -66,4 +60,18 @@ REPO_URL = REPO_BASEURL + "%s/mozilla-l10n/" % (REPO)
 # WARNING: if you change this, you'll have to edit ini files accordingly
 REPO_BASEDIR = "mozilla"
 REPODIR = os.path.join(REPO_BASEDIR, REPO)
+ENUSDIR = os.path.join(REPODIR, "en-US")
+INIDIR = os.path.join(REPODIR, "ini")
+
+# l10n.ini location for compare-locales
+# Firefox
+FX_L10N_INI = os.path.join(INIDIR, "browser.ini")
+# Thunderbird
+TB_L10N_INI = os.path.join(INIDIR, "mail.ini")
+# Toolkit
+TK_L10N_INI = os.path.join(INIDIR, "toolkit.ini")
+# Calendar
+CA_L10N_INI = os.path.join(INIDIR, "calendar.ini")
+# Mobile
+MB_L10N_INI = os.path.join(INIDIR, "mobile.ini")
 
