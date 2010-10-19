@@ -29,7 +29,7 @@ PO2MOZ_PARAMS = COMMON_PARAMS[:]
 #
 
 # Firefox directories
-DIRS_FX = ("browser", "extensions/reporter", "other-licenses/branding/firefox")
+DIRS_FX = ("browser", "other-licenses/branding/firefox", "services/sync")
 # Thunderbird directories
 DIRS_TB = ("mail", "other-licenses/branding/thunderbird", "editor/ui")
 # Calendar directories
