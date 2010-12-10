@@ -10,7 +10,7 @@ import os
 MOZLANG = "eu"
 
 # Set this to the product(s) you are localizing. Available options are:
-# FX (Firefox), TB (Thunderbird), CA (Calendar), TK (Toolkit)
+# FX (Firefox), TB (Thunderbird), CA (Calendar), TK (Toolkit), MB (Mobile)
 # Example: PRODUCTS = ["FX", "TB"]
 PRODUCTS = ["TB"]
 
@@ -19,7 +19,7 @@ PRODUCTS = ["TB"]
 REPO = "1.9.2"
 
 # Parameters passed to moz2po/po2moz scripts
-COMMON_PARAMS = ["--errorlevel=traceback", "--progress=verbose", "--exclude=*.xhtml", "--exclude=*.inc", "--exclude=*.xml" "--exclude=*.rdf", "--exclude=*.js", "--exclude=*.html", "--exclude=*.txt", "--exclude=*.css", "--exclude=*.mk"]
+COMMON_PARAMS = ["--errorlevel=traceback", "--progress=verbose", "--exclude=*.xhtml", "--exclude=*.inc", "--exclude=*.xml" "--exclude=*.rdf", "--exclude=*.js", "--exclude=*.html", "--exclude=*.txt", "--exclude=*.css", "--exclude=*.mk", "--exclude=region.properties", "--exclude=intl.properties"]
 MOZ2PO_PARAMS = ["--duplicates=msgctxt"] + COMMON_PARAMS[:]
 PO2MOZ_PARAMS = COMMON_PARAMS[:]
 
